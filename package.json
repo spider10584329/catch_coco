@@ -1,0 +1,14 @@
+{
+  "name": "catch-coco",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome extension that catches the BC.Game 'Coco' crocodile bonus",
+  "scripts": {
+    "test": "node tests/coco-frame.test.js",
+    "icons": "node tools/make-icons.js",
+    "decode": "node tools/decode-frame.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

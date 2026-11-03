@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Coco Catcher</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="head">
+    <span class="head-croc" aria-hidden="true">🐊</span>
+    <div class="head-text">
+      <h1>Coco Catcher</h1>
+      <p id="status">Waiting for Coco…</p>
+    </div>
+    <button type="button" id="clear" class="ghost" title="Clear history">Clear</button>
+  </header>
+
+  <section class="card">
+    <div class="card-head">
+      <span class="label">Latest offer</span>
+      <span class="pill" id="latest-state">none</span>
+    </div>
+    <p class="bonus" id="latest-bonus">—</p>
+    <p class="meta" id="latest-meta">No Coco has appeared yet.</p>
+    <div class="actions">
+      <button type="button" id="claim" class="primary" disabled>Catch Coco</button>
+      <button type="button" id="dismiss" class="ghost" disabled>Dismiss</button>
+    </div>
+    <p class="result" id="latest-result"></p>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <span class="label">Coco icon on page</span>
+      <span class="pill" id="pick-state">auto</span>
+    </div>
+    <p class="meta" id="pick-meta">Detected automatically. If it is missed, click "Pick Coco" while Coco is on screen.</p>
+    <div class="actions">
+      <button type="button" id="pick" class="primary">Pick Coco</button>
+      <button type="button" id="find" class="ghost">Find now</button>
+      <button type="button" id="clear-pick" class="ghost">Reset</button>
+    </div>
+    <p class="result" id="pick-result"></p>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <span class="label">Schedule (JST)</span>
+      <span class="pill" id="window-state">idle</span>
+    </div>
+    <p class="meta" id="next-window">—</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><span class="label">Settings</span></div>
+    <label class="row">
+      <input type="checkbox" id="auto-claim" />
+      <span><strong>Auto-catch</strong><small>Claim the moment Coco appears</small></span>
+    </label>
+    <label class="row">
+      <input type="checkbox" id="overlay" />
+      <span><strong>In-page bubble</strong><small>Show a clickable Coco on the page</small></span>
+    </label>
+    <label class="row">
+      <input type="checkbox" id="notifications" />
+      <span><strong>Desktop notifications</strong><small>Alert even when BC.Game is in a background tab</small></span>
+    </label>
+    <label class="row">
+      <input type="checkbox" id="dom-click" />
+      <span><strong>Click Coco icon</strong><small>Click the Coco on the page like a real user</small></span>
+    </label>
+    <label class="row">
+      <input type="checkbox" id="trusted" />
+      <span><strong>Real-click fallback</strong><small>If Coco ignores a click, send a real mouse click (debugger)</small></span>
+    </label>
+    <label class="row">
+      <input type="checkbox" id="keep-tab" />
+      <span><strong>Keep tab ready</strong><small>Open/refresh a BC.Game tab 5 min before each Coco window</small></span>
+    </label>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <span class="label">History</span>
+      <span class="pill" id="history-count">0</span>
+    </div>
+    <ul class="history" id="history"></ul>
+    <p class="empty" id="history-empty">Nothing captured yet.</p>
+  </section>
+
+  <footer class="foot">
+    <span id="smid-state">device id: not captured</span>
+    <button type="button" id="debug" class="ghost" title="Copy diagnostics to the clipboard">Copy debug report</button>
+  </footer>
+
+  <script src="shared/coco-frame.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

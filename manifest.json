@@ -1,0 +1,95 @@
+{
+  "manifest_version": 3,
+  "name": "Coco Catcher for BC.Game",
+  "version": "1.2.0",
+  "description": "Captures the BC.Game 'Coco' crocodile bonus push, shows a clickable Coco bubble and sends the claim request for you.",
+  "minimum_chrome_version": "111",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "notifications",
+    "alarms",
+    "tabs",
+    "debugger"
+  ],
+  "host_permissions": [
+    "https://bc.game/*",
+    "https://*.bc.game/*",
+    "https://bc.co/*",
+    "https://*.bc.co/*",
+    "https://bcgame.ai/*",
+    "https://*.bcgame.ai/*",
+    "https://bcgame.com/*",
+    "https://*.bcgame.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "action": {
+    "default_title": "Coco Catcher",
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://bc.game/*",
+        "https://*.bc.game/*",
+        "https://bc.co/*",
+        "https://*.bc.co/*",
+        "https://bcgame.ai/*",
+        "https://*.bcgame.ai/*",
+        "https://bcgame.com/*",
+        "https://*.bcgame.com/*"
+      ],
+      "exclude_matches": [
+        "https://socketv4.bc.game/*",
+        "https://socketv4.bc.co/*",
+        "https://socketv4.bcgame.ai/*",
+        "https://socketv4.bcgame.com/*"
+      ],
+      "js": [
+        "src/interceptor.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "https://bc.game/*",
+        "https://*.bc.game/*",
+        "https://bc.co/*",
+        "https://*.bc.co/*",
+        "https://bcgame.ai/*",
+        "https://*.bcgame.ai/*",
+        "https://bcgame.com/*",
+        "https://*.bcgame.com/*"
+      ],
+      "exclude_matches": [
+        "https://socketv4.bc.game/*",
+        "https://socketv4.bc.co/*",
+        "https://socketv4.bcgame.ai/*",
+        "https://socketv4.bcgame.com/*"
+      ],
+      "js": [
+        "src/shared/coco-frame.js",
+        "src/content.js",
+        "src/dom-catcher.js"
+      ],
+      "run_at": "document_start",
+      "world": "ISOLATED",
+      "all_frames": false
+    }
+  ]
+}
